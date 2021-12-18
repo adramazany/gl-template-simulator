@@ -1,0 +1,3 @@
+2021-09-29 11:25:22 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EVENT" not found; SQL statement:
+create table events ( id int(9) not null auto_increment ,f_parent int(9) ,hierarchy_id varchar(50) not null ,code int(9) ,name varchar(100) not null ,json_sample_business_agreed text ,voucher_description_formula varchar(4000) ,voucher_voucher_type_formula varchar(4000) ,constraint pk_event primary key (id) ,constraint uk_event_code unique (code) ,constraint fk_event_parent foreign key (f_parent) references event (id) ) [42102-200]

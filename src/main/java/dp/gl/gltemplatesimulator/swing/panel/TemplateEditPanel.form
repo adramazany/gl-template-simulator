@@ -1,0 +1,201 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="dp.gl.gltemplatesimulator.swing.panel.TemplateEditPanel">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="630" height="311"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="dde88" layout-manager="FlowLayout" hgap="0" vgap="0" flow-align="1">
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="55870" class="javax.swing.JCheckBox" binding="chkStatus">
+            <constraints/>
+            <properties>
+              <text value="status"/>
+            </properties>
+          </component>
+          <component id="fd516" class="javax.swing.JTextField" binding="txtOrderno">
+            <constraints/>
+            <properties>
+              <columns value="5"/>
+            </properties>
+            <clientProperties>
+              <caretWidth class="java.lang.Integer" value="40"/>
+            </clientProperties>
+          </component>
+          <component id="73492" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="orderno"/>
+            </properties>
+          </component>
+          <component id="abf39" class="javax.swing.JTextField" binding="txtF_account_base">
+            <constraints/>
+            <properties>
+              <columns value="5"/>
+            </properties>
+            <clientProperties>
+              <caretWidth class="java.lang.Integer" value="40"/>
+            </clientProperties>
+          </component>
+          <component id="9d575" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="f_account_base"/>
+            </properties>
+          </component>
+          <component id="733aa" class="javax.swing.JTextField" binding="txtF_event">
+            <constraints/>
+            <properties>
+              <columns value="5"/>
+            </properties>
+            <clientProperties>
+              <caretWidth class="java.lang.Integer" value="40"/>
+            </clientProperties>
+          </component>
+          <component id="6764d" class="javax.swing.JLabel">
+            <constraints/>
+            <properties>
+              <text value="f_event"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <grid id="cec6d" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <component id="829dd" class="javax.swing.JTextField" binding="txtName">
+            <constraints border-constraint="Center"/>
+            <properties/>
+          </component>
+          <component id="ce8d4" class="javax.swing.JLabel">
+            <constraints border-constraint="East"/>
+            <properties>
+              <text value="name"/>
+            </properties>
+          </component>
+        </children>
+      </grid>
+      <tabbedpane id="96dc6" binding="tabbedPane1" default-binding="true">
+        <constraints border-constraint="Center"/>
+        <properties>
+          <tabLayoutPolicy value="0"/>
+          <tabPlacement value="1"/>
+        </properties>
+        <border type="none"/>
+        <children>
+          <scrollpane id="dd28f">
+            <constraints>
+              <tabbedpane title="status"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="7df7f" class="javax.swing.JTextArea" binding="txtStatus_formula">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="d3286">
+            <constraints>
+              <tabbedpane title="account_no"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="b1f0d" class="javax.swing.JTextArea" binding="txtAccount_no_formula">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="5d4c6">
+            <constraints>
+              <tabbedpane title="debit"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="ff745" class="javax.swing.JTextArea" binding="txtDebit_formula">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="7f369">
+            <constraints>
+              <tabbedpane title="credit"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="b3e9c" class="javax.swing.JTextArea" binding="txtCredit_formula">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="7e2ca">
+            <constraints>
+              <tabbedpane title="description"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="99d1b" class="javax.swing.JTextArea" binding="txtDescription_formula">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="65954">
+            <constraints>
+              <tabbedpane title="costcenter1"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="f72e8" class="javax.swing.JTextArea" binding="txtCostcenter1_formula">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="38f83">
+            <constraints>
+              <tabbedpane title="cc2"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="58e58" class="javax.swing.JTextArea" binding="txtCostcenter2_formula">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="6c8e2">
+            <constraints>
+              <tabbedpane title="cc3"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="6c7b9" class="javax.swing.JTextArea" binding="txtCostcenter3_formula">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+</form>

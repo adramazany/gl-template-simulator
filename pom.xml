@@ -1,0 +1,173 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.3.5.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+    <groupId>dp.gl</groupId>
+    <artifactId>gl-template-simulator</artifactId>
+    <version>1.5.1</version>
+    <name>gl-template-simulator</name>
+    <description>
+        Digipay GL Template Simulator
+
+        version 1.5.1
+        ------------
+        feature 1- adding 3 overload to account,costCenter,profileMappingName lookup methods by adding  biz_name parameter to defining biz_mapping dynamicly
+
+        version 1.5.0
+        ------------
+        feature 1- adding status_formula to templates and deciding cooperation of template in voucher by result of that
+
+        version 1.4.1
+        ------------
+        bug 1- set version to 0 in adding new account
+        feature 2-adding these lookup methods
+        String costCenter(Integer f_costcenter_base, String profileCode,Integer biz_id);
+        String costCenter(String code);
+        String remain(Integer f_account_leaf);
+
+        version 1.4.0
+        ------------
+        feature 1- adding f_profile,f_profile_mapping to account
+        feature 2- check that new dynamic account should be same type as defined in baseAccount.f_profile
+
+        version 1.3.0
+        ------------
+        feature - integration with GL core
+                    change template.f_account_base -> baseAccount  , findAccount->account , findCostcenter->costCenter , findName->profileMappingName
+
+
+        version 1.2.0
+        ------------
+        feature - change hierarchy_id mechanism : null in root , seperate by underscore , remove seperator at end
+        feature - adding lookup.findAccountByNo
+
+        version 1.1.1
+        -------------
+        bug - resolve idea gui form problem in executing with single jar
+
+
+
+    </description>
+
+
+
+    <properties>
+        <java.version>1.8</java.version>
+        <intellij.version>7.0.3</intellij.version>
+    </properties>
+    <!--                <intellij.version>17.1.5</intellij.version> -->
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-amqp</artifactId>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jdbc</artifactId>
+        </dependency>
+<!--
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+        </dependency>
+-->
+
+
+        <dependency>
+            <groupId>com.h2database</groupId>
+            <artifactId>h2</artifactId>
+            <scope>runtime</scope>
+        </dependency>
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.22</version>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.amqp</groupId>
+            <artifactId>spring-rabbit-test</artifactId>
+            <scope>test</scope>
+        </dependency>
+
+<!--        <dependency>-->
+<!--            <groupId>com.intellij</groupId>-->
+<!--            <artifactId>forms_rt</artifactId>-->
+<!--            <version>7.0.3</version>-->
+<!--        </dependency>-->
+
+        <dependency>
+            <groupId>com.google.code.gson</groupId>
+            <artifactId>gson</artifactId>
+            <version>2.8.6</version>
+        </dependency>
+
+<!--
+        <dependency>
+            <groupId>commons-beanutils</groupId>
+            <artifactId>commons-beanutils</artifactId>
+            <version>1.9.4</version>
+        </dependency>
+-->
+
+        <dependency>
+            <groupId>javax.persistence</groupId>
+            <artifactId>javax.persistence-api</artifactId>
+            <version>2.2</version>
+        </dependency>
+
+
+
+        <dependency>
+            <groupId>com.intellij</groupId>
+            <artifactId>javac2</artifactId>
+            <version>${intellij.version}</version>
+        </dependency>
+        <dependency>
+            <groupId>com.intellij</groupId>
+            <artifactId>forms_rt</artifactId>
+            <version>${intellij.version}</version>
+        </dependency>
+<!--        <dependency>-->
+<!--            <groupId>com.intellij</groupId>-->
+<!--            <artifactId>asm-all</artifactId>-->
+<!--            <version>8.0.1</version>-->
+<!--        </dependency>-->
+        <dependency>
+            <groupId>org.jetbrains.intellij.deps</groupId>
+            <artifactId>asm-all</artifactId>
+            <version>9.1</version>
+            <scope>runtime</scope>
+        </dependency>
+
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <version>2.3.5.RELEASE</version>
+
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

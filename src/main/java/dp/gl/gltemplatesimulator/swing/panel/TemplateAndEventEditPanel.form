@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="dp.gl.gltemplatesimulator.swing.panel.TemplateAndEventEditPanel">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="617" height="498"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <nested-form id="729cf" form-file="dp/gl/gltemplatesimulator/swing/panel/TemplateEditPanel.form" binding="templateEditPanel">
+        <constraints border-constraint="Center"/>
+      </nested-form>
+      <tabbedpane id="ffb4a" binding="tabbedPane1" default-binding="true">
+        <constraints border-constraint="South"/>
+        <properties/>
+        <border type="none"/>
+        <children>
+          <scrollpane id="2baee">
+            <constraints>
+              <tabbedpane title="ورودی JSON"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="2b52c" class="javax.swing.JTextArea" binding="txtJSON">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="ff93">
+            <constraints>
+              <tabbedpane title="VoucherType"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="3bcde" class="javax.swing.JTextArea" binding="txtVoucherTypeFormula">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+          <scrollpane id="8459b">
+            <constraints>
+              <tabbedpane title="VoucherDescription"/>
+            </constraints>
+            <properties/>
+            <border type="none"/>
+            <children>
+              <component id="1ee2e" class="javax.swing.JTextArea" binding="txtVoucherDescription">
+                <constraints/>
+                <properties/>
+              </component>
+            </children>
+          </scrollpane>
+        </children>
+      </tabbedpane>
+    </children>
+  </grid>
+</form>

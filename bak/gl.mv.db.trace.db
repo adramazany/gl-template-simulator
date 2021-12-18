@@ -1,0 +1,161 @@
+2020-11-14 10:42:01 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Constraint "PK_TEMPLATE" already exists; SQL statement:
+create table template_history(
+                                 id   int(9) not null
+    ,name varchar(150) not null
+    ,f_event  int(9) not null
+    ,orderno  int(4) not null
+    ,f_account_base       int(12) not null
+    ,account_no_formula   tinytext
+    ,debit_formula        tinytext
+    ,credit_formula       tinytext
+    ,description_formula  tinytext
+    ,costcenter1_formula  tinytext
+    ,costcenter2_formula  tinytext
+    ,costcenter3_formula  tinytext
+    ,status           int(1) default 1 not null
+    ,version          int(3) default 0 not null
+    ,create_date      datetime default NOW() not null
+    ,last_modify_date datetime
+    ,constraint pk_template primary key (id)
+) [90045-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:576)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	at org.h2.message.DbException.get(DbException.java:205)
+	at org.h2.message.DbException.get(DbException.java:181)
+	at org.h2.command.ddl.AlterTableAddConstraint.tryUpdate(AlterTableAddConstraint.java:114)
+	at org.h2.command.ddl.AlterTableAddConstraint.update(AlterTableAddConstraint.java:78)
+	at org.h2.command.ddl.CommandWithColumns.createConstraints(CommandWithColumns.java:83)
+	at org.h2.command.ddl.CreateTable.update(CreateTable.java:133)
+	at org.h2.command.CommandContainer.update(CommandContainer.java:198)
+	at org.h2.command.Command.executeUpdate(Command.java:251)
+	at org.h2.jdbc.JdbcStatement.executeInternal(JdbcStatement.java:228)
+	at org.h2.jdbc.JdbcStatement.execute(JdbcStatement.java:201)
+	at com.intellij.database.remote.jdbc.impl.RemoteStatementImpl.execute(RemoteStatementImpl.java:78)
+	at jdk.internal.reflect.GeneratedMethodAccessor26.invoke(Unknown Source)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:359)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:562)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:796)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:677)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:676)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CONFIG" already exists; SQL statement:
+create table config ( `key` varchar(50) not null ,value varchar(150) ,constraint pk_config primary key (`key`) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "EVENT" already exists; SQL statement:
+create table event ( id int(9) not null auto_increment ,f_parent int(9) ,hierarchy_id varchar(50) not null ,name varchar(100) not null ,json_sample_biz_agreed text ,voucher_description_formula varchar(4000) ,voucher_voucher_type_formula varchar(4000) ,constraint pk_event primary key (id) ,constraint fk_event_parent foreign key (f_parent) references event (id) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRANSACTION_REQ" already exists; SQL statement:
+create table transaction_req ( id int(12) not null auto_increment ,requestid varchar(36) not null ,f_event int(9) not null ,amount int(12) not null ,clientid varchar(36) not null ,json text ,aggregationid varchar(36) ,parent_requestid varchar(36) ,create_date datetime default NOW() not null ,constraint pk_transaction_req primary key (id) ,constraint uk_event_requestid unique ( requestid, f_event) ,constraint fk_transaction_req_event foreign key (f_event) references event (id) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRANSACTION_RES" already exists; SQL statement:
+create table transaction_res ( f_transaction_req int(12) not null ,status int(1) not null ,response int(5) not null ,duration int(6) not null ,ctry int(3) ,version int(3) default 0 not null ,create_date datetime default NOW() not null ,last_modify_date datetime ,constraint pk_transaction_res primary key (f_transaction_req) ,constraint fk_transaction_res_req foreign key (f_transaction_req) references transaction_req (id) ,constraint ck_transaction_res_status check (status in (0,1,2,3,4)) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TRANSACTION_RES_LOG" already exists; SQL statement:
+create table transaction_res_log ( id int(12) not null auto_increment ,f_transaction_req int(12) not null ,status int(1) not null ,response int(5) not null ,duration int(6) not null ,ctry int(3) ,version int(3) default 0 not null ,create_date datetime default NOW() not null ,last_modify_date date ,exception_log text ,constraint pk_transaction_res_log primary key (id) ,constraint ck_transaction_res_log_status check (status in (0,1,2,3,4)) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "REQUEST" already exists; SQL statement:
+create table request ( id int(12) not null auto_increment ,requestid varchar(36) not null ,f_event int(9) not null ,clientid varchar(36) not null ,json text ,aggregationid varchar(36) ,parent_requestid varchar(36) ,create_date datetime default NOW() not null ,constraint pk_request primary key (id) ,constraint uk_request unique ( requestid, f_event) ,constraint fk_request_event foreign key (f_event) references event (id) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "RESPONSE" already exists; SQL statement:
+create table response ( f_request int(12) not null ,status int(1) not null ,response int(5) not null ,duration int(6) not null ,ctry int(3) ,version int(3) default 0 not null ,create_date datetime default NOW() not null ,last_modify_date datetime ,constraint pk_response primary key (f_request) ,constraint fk_response_request foreign key (f_request) references request (id) ,constraint ck_response_status check (status in (0,1,2,3,4)) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "RESPONSE_LOG" already exists; SQL statement:
+create table response_log ( id int(12) not null auto_increment ,f_request int(12) not null ,status int(1) not null ,response int(5) not null ,duration int(6) not null ,ctry int(3) ,version int(3) default 0 not null ,create_date datetime default NOW() not null ,last_modify_date datetime ,exception_log text ,constraint pk_response_log primary key (id) ,constraint ck_response_log_status check (status in (0,1,2,3,4)) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "USERS" already exists; SQL statement:
+create table users ( id int(9) not null auto_increment ,username varchar(36) not null ,password_hash varchar(256) ,first_name varchar(50) ,last_name varchar(150) ,mobile varchar(12) ,constraint pk_users primary key (id) ,constraint uk_users unique ( username ) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ACCOUNT" already exists; SQL statement:
+create table account ( id int(12) not null auto_increment ,f_parent int(12) ,hierarchy_id varchar(60) ,account_no int(10) ,full_account_no varchar(60) ,account_name varchar(250) ,inherited int(1) default 1 not null ,status int(1) default 1 not null ,account_type int(1) not null ,account_origin int(1) not null ,is_cutoff int(1) not null ,version int(3) default 0 not null ,create_date datetime default NOW() not null ,last_modify_date datetime ,constraint pk_account primary key (id) ,constraint uk_account unique ( f_parent, account_no) ,constraint fk_account_parent foreign key (f_parent) references event (id) ,constraint ck_account_inherited check (inherited in (0,1)) ,constraint ck_account_status check (status in (0,1,2)) ,constraint ck_account_type check (account_type in (1,2,3)) ,constraint ck_account_origin check (account_origin in (0,1,2,3)) ,constraint ck_account_cutoff check (is_cutoff in (0,1)) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BIZ_PROFILE" already exists; SQL statement:
+create table biz_profile ( id int(6) not null auto_increment ,code varchar(20) not null ,name varchar(100) not null ,f_event_owner int(9) ,constraint pk_biz_profile primary key (id) ,constraint uk_biz_profile_code unique (code) ,constraint uk_biz_profile_name unique (name) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "BIZ_MAPPING" already exists; SQL statement:
+create table biz_mapping ( id int(12) not null auto_increment ,f_request int(12) ,f_profile int(6) not null ,account_no int(10) not null ,biz_id int(18) not null ,biz_name varchar(250) not null ,constraint pk_biz_mapping primary key (id) ,constraint uk_biz_mapping_profile unique (f_profile, account_no) ,constraint uk_biz_mapping_biz unique (f_profile, biz_id) ,constraint fk_biz_mapping_request foreign key (f_request) references request (id) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "COSTCENTER" already exists; SQL statement:
+create table costcenter ( id int(12) not null auto_increment ,f_parent int(12) ,hierarchy_id varchar(60) ,code int(10) ,name varchar(150) ,status int(1) default 1 not null ,constraint pk_costcenter primary key (id) ,constraint uk_costcenter unique ( f_parent, code) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TEMPLATE" already exists; SQL statement:
+create table template ( id int(9) not null auto_increment ,name varchar(150) not null ,f_event int(9) not null ,orderno int(4) not null ,f_account_base int(12) not null ,account_no_formula tinytext ,debit_formula tinytext ,credit_formula tinytext ,description_formula tinytext ,costcenter1_formula tinytext ,costcenter2_formula tinytext ,costcenter3_formula tinytext ,status int(1) default 1 not null ,version int(3) default 0 not null ,create_date datetime default NOW() not null ,last_modify_date datetime ,constraint pk_template primary key (id) ,constraint uk_template unique ( f_event, orderno) ,constraint fk_template_event foreign key (f_event) references event (id) ,constraint fk_template_account foreign key (f_account_base) references account (id) ,constraint ck_template_status check (status in (0,1)) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "TEMPLATE_HISTORY" already exists; SQL statement:
+create table template_history( id int(9) not null ,name varchar(150) not null ,f_event int(9) not null ,orderno int(4) not null ,f_account_base int(12) not null ,account_no_formula tinytext ,debit_formula tinytext ,credit_formula tinytext ,description_formula tinytext ,costcenter1_formula tinytext ,costcenter2_formula tinytext ,costcenter3_formula tinytext ,status int(1) default 1 not null ,version int(3) default 0 not null ,create_date datetime default NOW() not null ,last_modify_date datetime ,constraint pk_template_history primary key (id) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "VOUCHER_TYPE" already exists; SQL statement:
+create table voucher_type ( id int(5) not null auto_increment ,name varchar(50) not null ,version int(3) default 0 not null ,create_date datetime default NOW() not null ,last_modify_date datetime ,constraint pk_voucher_type primary key (id) ,constraint uk_voucher_type unique ( name) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "VOUCHER" already exists; SQL statement:
+create table voucher ( id int(12) not null auto_increment ,f_transaction_req int(12) ,f_parent int(12) ,register_date datetime default NOW() not null ,effective_date datetime default NOW() not null ,description varchar(250) ,f_voucher_type int(5) ,financial_year int(4) not null ,orderno int(12) not null ,status int(1) ,final_no int(12) ,f_user_create int(9) ,f_user_confirm int(9) ,version int(3) default 0 not null ,create_date datetime default NOW() not null ,confirm_date datetime ,last_modify_date datetime ,constraint pk_voucher primary key (id) ,constraint uk_voucher_transaction unique ( f_transaction_req) ,constraint uk_voucher_financial unique ( financial_year, orderno) ,constraint uk_voucher_final unique ( financial_year, final_no) ,constraint fk_voucher_type foreign key (f_voucher_type) references voucher_type (id) ,constraint fk_voucher_transaction_req foreign key (f_transaction_req) references transaction_req (id) ,constraint fk_voucher_parent foreign key (f_parent) references voucher (id) ,constraint fk_voucher_users_create foreign key (f_user_create) references users (id) ,constraint fk_voucher_users_confirm foreign key (f_user_confirm) references users (id) ,constraint ck_voucher_status check (status in (0,1,2,3,4)) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "ARTICLE" already exists; SQL statement:
+create table article ( id int(18) not null auto_increment ,f_voucher int(12) not null ,f_template int(12) ,orderno int(4) not null ,f_account_leaf int(12) not null ,debit int(12) ,credit int(12) ,description varchar(250) not null ,f_costcenter1 int(12) ,f_costcenter2 int(12) ,f_costcenter3 int(12) ,version int(3) default 0 not null ,create_date datetime default NOW() not null ,last_modify_date datetime ,constraint pk_article primary key (id) ,constraint uk_article unique ( f_voucher, orderno) ,constraint fk_article_voucher foreign key (f_voucher) references voucher (id) ,constraint fk_article_account foreign key (f_account_leaf) references account (id) ,constraint fk_article_template foreign key (f_template) references template (id) ,constraint fk_article_costcenter1 foreign key (f_costcenter1) references costcenter (id) ,constraint fk_article_costcenter2 foreign key (f_costcenter2) references costcenter (id) ,constraint fk_article_costcenter3 foreign key (f_costcenter3) references costcenter (id) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CUTOFF_YEAR" already exists; SQL statement:
+create table cutoff_year( f_account int(12) not null ,year int(4) not null ,debit int(18) default 0 not null ,credit int(18) default 0 not null ,version int(9) default 0 not null ,last_modify_date datetime ,f_user_modify int(9) ,constraint pk_cutoff_year primary key (f_account,year) ,constraint fk_cutoff_year_account foreign key (f_account) references account (id) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CUTOFF_MONTH" already exists; SQL statement:
+create table cutoff_month( f_account int(12) not null ,yearmonth int(6) not null ,debit int(18) default 0 not null ,credit int(18) default 0 not null ,version int(9) default 0 not null ,last_modify_date datetime ,f_user_modify int(9) ,constraint pk_cutoff_month primary key (f_account,yearmonth) ,constraint fk_cutoff_month_account foreign key (f_account) references account (id) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "CUTOFF_DAY" already exists; SQL statement:
+create table cutoff_day( f_account int(12) not null ,yearmonthday int(8) not null ,debit int(18) default 0 not null ,credit int(18) default 0 not null ,version int(9) default 0 not null ,last_modify_date datetime ,f_user_modify int(9) ,constraint pk_cutoff_day primary key (f_account,yearmonthday) ,constraint fk_cutoff_day_account foreign key (f_account) references account (id) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "RESTRICTION" already exists; SQL statement:
+create table restriction ( id int(9) not null auto_increment ,name varchar(100) not null ,f_account int(12) not null ,effective_date datetime default NOW() not null ,expire_date datetime ,status int(1) default 1 not null ,min_amount int(12) ,max_amount int(12) ,debit_credit int(1) default 0 not null ,f_user int(12) ,version int(3) default 0 not null ,create_date datetime default NOW() not null ,last_modify_date datetime ,constraint pk_restriction primary key (id) ,constraint uk_restriction unique ( f_account, f_user , effective_date) ,constraint ck_restriction_status check (status in (0,1)) ,constraint ck_restriction_debit_credit check (debit_credit in (0,1,2)) ) [42101-200]
+2020-11-21 15:47:15 jdbc[3]: exception
+org.h2.jdbc.JdbcSQLSyntaxErrorException: Table "LIMITS" already exists; SQL statement:
+create table limits ( id int(9) not null auto_increment ,name varchar(100) not null ,f_account int(12) not null ,effective_date datetime default NOW() not null ,expire_date datetime ,status int(1) default 1 not null ,day_max_amount int(12) ,day_max_count int(12) ,month_max_amount int(12) ,month_max_count int(12) ,debit_credit int(1) default 0 not null ,version int(3) default 0 not null ,create_date datetime default NOW() not null ,last_modify_date datetime ,constraint pk_limit primary key (id) ,constraint uk_limit unique ( f_account, effective_date) ,constraint ck_limit_status check (status in (0,1)) ,constraint ck_limit_debit_credit check (debit_credit in (0,1,2)) ) [42101-200]
+2020-11-21 13:44:06 database: close
+org.h2.message.DbException: IO Exception: "java.io.EOFException"; "/Users/adel/gl.mv.db.h2.db" [90031-200]
+	at org.h2.message.DbException.get(DbException.java:194)
+	at org.h2.message.DbException.convertIOException(DbException.java:394)
+	at org.h2.store.FileStore.readFully(FileStore.java:284)
+	at org.h2.pagestore.PageStore.readPage(PageStore.java:1320)
+	at org.h2.pagestore.PageStore.getPage(PageStore.java:744)
+	at org.h2.pagestore.PageStreamTrunk$Iterator.next(PageStreamTrunk.java:252)
+	at org.h2.pagestore.PageLog.free(PageLog.java:216)
+	at org.h2.pagestore.PageStore.compact(PageStore.java:494)
+	at org.h2.engine.Database.closeOpenFilesAndUnlock(Database.java:1517)
+	at org.h2.engine.Database.closeImpl(Database.java:1454)
+	at org.h2.engine.Database.close(Database.java:1373)
+	at org.h2.engine.Database.removeSession(Database.java:1307)
+	at org.h2.engine.Session.close(Session.java:963)
+	at org.h2.jdbc.JdbcConnection.close(JdbcConnection.java:453)
+	at com.intellij.database.remote.jdbc.impl.RemoteConnectionImpl.close(RemoteConnectionImpl.java:96)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke0(Native Method)
+	at java.base/jdk.internal.reflect.NativeMethodAccessorImpl.invoke(NativeMethodAccessorImpl.java:62)
+	at java.base/jdk.internal.reflect.DelegatingMethodAccessorImpl.invoke(DelegatingMethodAccessorImpl.java:43)
+	at java.base/java.lang.reflect.Method.invoke(Method.java:566)
+	at java.rmi/sun.rmi.server.UnicastServerRef.dispatch(UnicastServerRef.java:359)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:200)
+	at java.rmi/sun.rmi.transport.Transport$1.run(Transport.java:197)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at java.rmi/sun.rmi.transport.Transport.serviceCall(Transport.java:196)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport.handleMessages(TCPTransport.java:562)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run0(TCPTransport.java:796)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.lambda$run$0(TCPTransport.java:677)
+	at java.base/java.security.AccessController.doPrivileged(Native Method)
+	at java.rmi/sun.rmi.transport.tcp.TCPTransport$ConnectionHandler.run(TCPTransport.java:676)
+	at java.base/java.util.concurrent.ThreadPoolExecutor.runWorker(ThreadPoolExecutor.java:1128)
+	at java.base/java.util.concurrent.ThreadPoolExecutor$Worker.run(ThreadPoolExecutor.java:628)
+	at java.base/java.lang.Thread.run(Thread.java:834)
+Caused by: org.h2.jdbc.JdbcSQLNonTransientException: IO Exception: "java.io.EOFException"; "/Users/adel/gl.mv.db.h2.db" [90031-200]
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:505)
+	at org.h2.message.DbException.getJdbcSQLException(DbException.java:429)
+	... 32 more
+Caused by: java.io.EOFException
+	at org.h2.store.fs.FileUtils.readFully(FileUtils.java:361)
+	at org.h2.store.FileStore.readFully(FileStore.java:282)
+	... 29 more

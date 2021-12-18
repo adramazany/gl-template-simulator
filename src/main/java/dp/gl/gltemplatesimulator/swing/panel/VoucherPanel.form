@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="dp.gl.gltemplatesimulator.swing.panel.VoucherPanel">
+  <grid id="27dc6" binding="rootPanel" layout-manager="BorderLayout" hgap="0" vgap="0">
+    <constraints>
+      <xy x="20" y="20" width="500" height="400"/>
+    </constraints>
+    <properties/>
+    <border type="none"/>
+    <children>
+      <grid id="416e5" layout-manager="BorderLayout" hgap="0" vgap="0">
+        <constraints border-constraint="North"/>
+        <properties/>
+        <border type="none"/>
+        <children/>
+      </grid>
+      <nested-form id="845b8" form-file="dp/gl/gltemplatesimulator/swing/panel/ArticlesTablePanel.form">
+        <constraints border-constraint="Center"/>
+      </nested-form>
+    </children>
+  </grid>
+</form>
